@@ -42,83 +42,92 @@
 :root {
   --radius: 0.875rem;
 
-  /* CYBER NEON: Light Mode */
-  --background: oklch(0.98 0.01 300);
-  --foreground: oklch(0.15 0.03 300);
+  /* SLATE & SNOW: Light Mode */
+  --background: oklch(0.99 0.002 250);
+  --foreground: oklch(0.12 0.008 250);
   --surface: oklch(1 0 0);
-  --surface-elevated: oklch(0.97 0.02 300);
+  --surface-elevated: oklch(0.97 0.004 250);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.03 300);
+  --card-foreground: oklch(0.12 0.008 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.03 300);
+  --popover-foreground: oklch(0.12 0.008 250);
 
-  /* Electric Purple */
-  --primary: oklch(0.60 0.25 315);
+  /* Bright silver-white primary */
+  --primary: oklch(0.25 0.01 250);
   --primary-foreground: oklch(1 0 0);
 
-  --secondary: oklch(0.95 0.02 300);
-  --secondary-foreground: oklch(0.15 0.03 300);
-  --muted: oklch(0.95 0.02 300);
-  --muted-foreground: oklch(0.45 0.03 300);
-  
-  /* Cyber Pink */
-  --accent: oklch(0.60 0.25 340);
+  --secondary: oklch(0.94 0.004 250);
+  --secondary-foreground: oklch(0.12 0.008 250);
+  --muted: oklch(0.94 0.004 250);
+  --muted-foreground: oklch(0.48 0.006 250);
+  --accent: oklch(0.60 0.01 250);
   --accent-foreground: oklch(1 0 0);
 
-  --destructive: oklch(0.65 0.22 25);
+  --destructive: oklch(0.60 0.22 18);
   --destructive-foreground: oklch(1 0 0);
 
-  --border: oklch(0.90 0.02 300);
-  --input: oklch(0.90 0.02 300);
-  --ring: oklch(0.60 0.25 315);
+  --border: oklch(0.87 0.005 250);
+  --input: oklch(0.87 0.005 250);
+  --ring: oklch(0.40 0.01 250);
 
   --ink: oklch(1 0 0);
 }
 
 .dark {
-  /* CYBER NEON: Dark Mode (Obsidian & Neon) */
-  --background: oklch(0.12 0.01 300);
-  --foreground: oklch(0.95 0.01 300);
-  --surface: oklch(0.16 0.02 300);
-  --surface-elevated: oklch(0.20 0.03 300);
-  --card: oklch(0.16 0.02 300);
-  --card-foreground: oklch(0.95 0.01 300);
-  --popover: oklch(0.16 0.02 300);
-  --popover-foreground: oklch(0.95 0.01 300);
+  /* SLATE & SNOW: Dark Mode — Cool graphite & snow white */
+  --background: oklch(0.13 0.008 250);
+  --foreground: oklch(0.97 0.004 250);
+  --surface: oklch(0.17 0.009 250);
+  --surface-elevated: oklch(0.21 0.010 250);
+  --card: oklch(0.17 0.009 250);
+  --card-foreground: oklch(0.97 0.004 250);
+  --popover: oklch(0.17 0.009 250);
+  --popover-foreground: oklch(0.97 0.004 250);
 
-  /* Electric Purple Glow */
-  --primary: oklch(0.70 0.25 315);
-  --primary-foreground: oklch(0.98 0.02 315);
+  /* Snow white primary */
+  --primary: oklch(0.95 0.005 250);
+  --primary-foreground: oklch(0.13 0.008 250);
 
-  --secondary: oklch(0.22 0.04 300);
-  --secondary-foreground: oklch(0.95 0.01 300);
-  --muted: oklch(0.22 0.04 300);
-  --muted-foreground: oklch(0.75 0.03 300);
-  
-  /* Cyber Pink Glow */
-  --accent: oklch(0.65 0.25 340);
-  --accent-foreground: oklch(0.98 0.02 340);
+  --secondary: oklch(0.21 0.010 250);
+  --secondary-foreground: oklch(0.97 0.004 250);
+  --muted: oklch(0.21 0.010 250);
+  --muted-foreground: oklch(0.62 0.006 250);
+  --accent: oklch(0.75 0.008 250);
+  --accent-foreground: oklch(0.13 0.008 250);
 
-  --destructive: oklch(0.65 0.22 25);
-  --destructive-foreground: oklch(0.95 0.01 300);
+  --destructive: oklch(0.60 0.22 18);
+  --destructive-foreground: oklch(0.97 0.004 250);
 
-  --border: oklch(0.25 0.04 300);
-  --input: oklch(0.22 0.04 300);
-  --ring: oklch(0.70 0.25 315);
+  --border: oklch(0.26 0.010 250);
+  --input: oklch(0.21 0.010 250);
+  --ring: oklch(0.70 0.008 250);
 
-  --ink: oklch(0.12 0.01 300);
+  --ink: oklch(0.13 0.008 250);
 }
 
 .dark { color-scheme: dark; }
 
 @layer base {
+  html {
+    width: 100%;
+    min-width: 320px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
   html, body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
   }
-  * { border-color: var(--color-border); }
+  body {
+    width: 100%;
+    min-width: 320px;
+    overflow-x: hidden;
+  }
+  * { border-color: var(--color-border); box-sizing: border-box; }
   ::selection { background: color-mix(in oklab, var(--primary) 45%, transparent); color: var(--ink); }
 }
 
