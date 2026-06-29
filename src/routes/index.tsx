@@ -31,10 +31,6 @@ function Landing() {
         <div className="relative grid gap-12 px-6 pt-20 pb-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:px-12 xl:px-24">
           {/* Left */}
           <div className="fade-up">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary pulse-dot" />
-              Live duels happening now
-            </span>
 
             <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
               Debug. Duel.<br />
@@ -62,60 +58,21 @@ function Landing() {
             </div>
           </div>
 
-          {/* Right — featured duel card */}
-          <div className="fade-up relative">
+          {/* Right — featured image */}
+          <div className="fade-up relative mt-10 lg:mt-0">
             {/* Floating verdict pill */}
-            <div className="absolute -left-4 top-8 z-10 hidden rounded-xl border border-border bg-surface-elevated px-4 py-3 shadow-2xl sm:block">
+            <div className="absolute -left-4 top-8 z-10 hidden rounded-xl border border-border bg-surface-elevated px-4 py-3 shadow-2xl sm:block transition-transform hover:scale-105">
               <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Verdict in</div>
               <div className="font-mono text-2xl font-bold text-primary">0.8s</div>
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
-              {/* gold top stripe */}
-              <div className="h-1 w-full bg-primary" />
-
-              <div className="grid grid-cols-2 gap-px bg-border">
-                {/* Player A */}
-                <PlayerPane
-                  name="@alex"
-                  status="submitted"
-                  lang="python"
-                  code={`def solve(arr):
-    total = 0
-    for i in range(len(arr)):
-        total += arr[i]
-    return total`}
-                  winning
-                />
-                {/* Player B */}
-                <PlayerPane
-                  name="@nova"
-                  status="typing…"
-                  lang="python"
-                  code={`def solve(arr):
-    total = 0
-    for i in range(len(arr) + 1):
-        total += arr[i]
-    return total`}
-                />
-              </div>
-
-              <div className="grid grid-cols-4 gap-px border-t border-border bg-border">
-                {[
-                  ["Correctness", 98],
-                  ["Cleanliness", 92],
-                  ["Efficiency", 95],
-                  ["Security", 90],
-                ].map(([k, v]) => (
-                  <div key={k as string} className="bg-surface p-3">
-                    <div className="text-[9px] font-semibold uppercase tracking-widest text-muted-foreground">{k}</div>
-                    <div className="mt-1 font-mono text-lg font-bold text-foreground">{v}</div>
-                    <div className="mt-1 h-0.5 w-full rounded-full bg-border">
-                      <div className="h-full rounded-full bg-primary" style={{ width: `${v}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl shadow-primary/10">
+              <img 
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" 
+                alt="Two developers coding and having fun" 
+                className="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+              <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
             </div>
           </div>
         </div>
@@ -252,8 +209,8 @@ function FeatureCard({ tag, title, body, icon }: { tag: string; title: string; b
     <div className="rounded-2xl border border-border bg-background p-6 shadow-sm">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{tag}</p>
       <div className="mt-4 flex items-start gap-4">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+        <span className="mt-0.5 shrink-0 text-primary">
+          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
             {icon}
           </svg>
         </span>
