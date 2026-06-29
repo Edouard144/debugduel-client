@@ -28,7 +28,7 @@ function Landing() {
           }}
         />
 
-        <div className="relative grid gap-12 px-6 pt-20 pb-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:px-12 xl:px-24">
+        <div className="relative mx-auto grid max-w-7xl gap-8 px-6 pt-20 pb-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16 lg:px-12 xl:px-24">
           {/* Left */}
           <div className="fade-up">
 
