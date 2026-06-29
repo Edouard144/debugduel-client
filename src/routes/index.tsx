@@ -61,8 +61,8 @@ function Landing() {
           <div className="fade-up relative mt-10 lg:mt-0">
             {/* Floating verdict pill */}
             <div className="absolute -left-4 top-8 z-10 hidden rounded-xl border border-border bg-surface-elevated px-4 py-3 shadow-2xl sm:block transition-transform hover:scale-105">
-              <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Verdict in</div>
-              <div className="font-mono text-2xl font-bold text-primary">0.8s</div>
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Bug fixed in</div>
+              <div className="font-mono text-2xl font-bold text-primary">48.8s</div>
             </div>
 
             <div className="relative overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl shadow-primary/10">
