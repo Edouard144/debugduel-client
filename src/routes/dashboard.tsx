@@ -54,7 +54,7 @@ function Dashboard() {
   return (
     <div className="min-h-screen bg-background">
       <TopNav />
-      <main className="mx-auto max-w-6xl px-6 py-12">
+      <main className="px-6 py-12 lg:px-12 xl:px-24">
         <div className="fade-up">
           <p className="font-mono text-xs uppercase tracking-wider text-primary">Welcome back</p>
           <h1 className="mt-1 text-3xl font-bold tracking-tight">

@@ -28,7 +28,7 @@ function Landing() {
           }}
         />
 
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pt-20 pb-28 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+        <div className="relative grid gap-12 px-6 pt-20 pb-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:px-12 xl:px-24">
           {/* Left */}
           <div className="fade-up">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
@@ -123,7 +123,7 @@ function Landing() {
 
       {/* LIGHT SECTION — features */}
       <section id="features" className="bg-foreground text-[color:var(--ink)]">
-        <div className="mx-auto max-w-6xl px-6 py-24">
+        <div className="px-6 py-24 lg:px-12 xl:px-24">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Why DebugDuel</p>
           <h2 className="mt-3 max-w-2xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
             Skill, judged by code — not by opinion.
@@ -165,7 +165,7 @@ function Landing() {
       {/* HOW IT WORKS — back on dark */}
       <section id="how" className="relative">
         <div aria-hidden className="absolute inset-0 grid-bg opacity-40" />
-        <div className="relative mx-auto max-w-6xl px-6 py-24">
+        <div className="relative px-6 py-24 lg:px-12 xl:px-24">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">The process</p>
           <h2 className="mt-3 max-w-2xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
             From challenge to verdict in four steps.
@@ -206,7 +206,7 @@ function Landing() {
       </section>
 
       <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-8 text-xs text-muted-foreground">
+        <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-8 text-xs text-muted-foreground lg:px-12 xl:px-24">
           <div className="flex items-center gap-2">
             <span className="h-5 w-5 rounded-md bg-primary" />
             <span>DebugDuel</span>

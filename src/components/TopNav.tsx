@@ -8,47 +8,50 @@ export function TopNav() {
   useEffect(() => { const u = auth.subscribe(() => setUser(auth.user)); return () => { u; }; }, []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+    <div className="sticky top-6 z-40 w-full px-6 lg:px-12 xl:px-24">
+      <header className="mx-auto flex h-14 w-full items-center justify-between rounded-full bg-white px-6 shadow-xl ring-1 ring-black/5 transition-all">
+        {/* Left: Logo */}
         <Link to="/" className="flex items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M9 7l-5 5 5 5M15 7l5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
+          <span className="flex h-7 w-7 items-center justify-center text-black">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </span>
-          <span className="text-base font-bold tracking-tight">DebugDuel</span>
+          <span className="text-[15px] font-bold uppercase tracking-wider text-black">DebugDuel</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#features" className="hover:text-foreground">Features</a>
-          <a href="#how" className="hover:text-foreground">How it works</a>
-          <Link to={auth.token ? "/dashboard" : "/login"} className="hover:text-foreground">Dashboard</Link>
+        {/* Center: Nav links */}
+        <nav className="hidden items-center gap-8 text-[13px] font-semibold text-zinc-500 md:flex">
+          <a href="/#features" className="text-zinc-900 transition-colors hover:text-black">Features</a>
+          <a href="/#how" className="transition-colors hover:text-black">How it works</a>
+          <Link to={auth.token ? "/dashboard" : "/login"} className="transition-colors hover:text-black">Dashboard</Link>
         </nav>
 
-        <div className="flex items-center gap-2">
+        {/* Right: Actions */}
+        <div className="flex items-center gap-5">
           {auth.token ? (
             <>
-              {user?.username && <span className="hidden text-xs text-muted-foreground md:inline">@{user.username}</span>}
+              {user?.username && <span className="hidden text-xs font-medium text-zinc-400 md:inline">@{user.username}</span>}
               <button
                 onClick={() => { auth.clear(); router.navigate({ to: "/" }); }}
-                className="rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground"
+                className="text-[13px] font-semibold text-zinc-600 transition-colors hover:text-black"
               >
-                Sign out
+                Log out
               </button>
-              <Link to="/dashboard" className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90">
-                Open dashboard
+              <Link to="/dashboard" className="rounded-full bg-black px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition-opacity hover:opacity-90">
+                Dashboard
               </Link>
             </>
           ) : (
             <>
-              <Link to="/login" className="rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground">Login</Link>
-              <Link to="/register" className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90">
-                Start dueling
+              <Link to="/login" className="text-[13px] font-semibold text-zinc-600 transition-colors hover:text-black">Log in</Link>
+              <Link to="/register" className="rounded-full bg-black px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition-opacity hover:opacity-90">
+                Start Free
               </Link>
             </>
           )}
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
   );
 }
