@@ -32,14 +32,14 @@ function Landing() {
           {/* Left */}
           <div className="fade-up">
 
-            <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
+            <h1 className="mt-6 font-display text-6xl font-extrabold leading-[0.98] tracking-tight sm:text-7xl lg:text-8xl uppercase">
               Debug. Duel.<br />
               <span className="italic text-primary">Dominate.</span>
             </h1>
 
             <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
               DebugDuel pits two developers against the same broken function. Fix the bug
-              faster — and cleaner — than your opponent. Judged in seconds by AI, not by opinion.
+              faster and cleaner — than your opponent. Judged in seconds by AI, not by opinion.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
