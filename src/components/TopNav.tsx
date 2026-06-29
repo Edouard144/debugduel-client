@@ -9,7 +9,7 @@ export function TopNav() {
   useEffect(() => { const u = auth.subscribe(() => setUser(auth.user)); return () => { u; }; }, []);
 
   return (
-    <div className="sticky top-6 z-40 w-full px-6 lg:px-12 xl:px-24">
+    <div className="fixed top-6 left-0 right-0 z-40 w-full px-6 lg:px-12 xl:px-24">
       <header className="mx-auto flex h-14 w-full items-center justify-between rounded-full bg-white dark:bg-zinc-900 px-6 shadow-xl dark:shadow-md dark:shadow-black/20 ring-1 ring-black/5 dark:ring-white/10 transition-all duration-300 ease-in-out hover:shadow-2xl">
         {/* Left: Logo */}
         <Link to="/" className="flex items-center gap-2.5">
@@ -46,7 +46,7 @@ export function TopNav() {
             </>
           ) : (
             <>
-              <Link to="/login" className="text-[13px] font-semibold text-zinc-600 dark:text-zinc-400 transition-all duration-300 ease-in-out hover:text-black dark:hover:text-white">Log in</Link>
+              <Link to="/login" className="text-[13px] font-semibold text-zinc-600 dark:text-zinc-400 transition-all duration-300 ease-in-out hover:scale-105 hover:text-black dark:hover:text-white">Log in</Link>
               <Link to="/register" className="rounded-full bg-black dark:bg-white px-5 py-2 text-[13px] font-semibold text-white dark:text-black shadow-sm transition-all duration-300 ease-in-out hover:scale-105 hover:opacity-90 hover:shadow-lg">
                 Start Free
               </Link>

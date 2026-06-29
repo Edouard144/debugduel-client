@@ -17,7 +17,7 @@ function Landing() {
       <TopNav />
 
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden pt-16">
         <div aria-hidden className="absolute inset-0 dot-bg opacity-30" />
         <div
           aria-hidden
