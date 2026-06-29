@@ -22,10 +22,11 @@ function Dashboard() {
   const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!auth.token) { navigate({ to: "/login" }); return; }
+    // auth guard removed by request
+    // if (!auth.token) { navigate({ to: "/login" }); return; }
     (async () => {
       try {
-        if (!auth.user) { const me = await api<any>("/api/auth/me/"); auth.setUser(me); setUser(me); }
+        if (!auth.user && auth.token) { const me = await api<any>("/api/auth/me/"); auth.setUser(me); setUser(me); }
         const lb = await api<any>("/api/auth/leaderboard/");
         const rows: LeaderRow[] = Array.isArray(lb) ? lb : (lb?.results ?? lb?.leaderboard ?? []);
         setLeaders(rows);

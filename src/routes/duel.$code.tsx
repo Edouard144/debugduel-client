@@ -34,7 +34,8 @@ function DuelPage() {
 
   // gate auth + load editor client-side
   useEffect(() => {
-    if (!auth.token) { navigate({ to: "/login" }); return; }
+    // auth guard removed by request
+    // if (!auth.token) { navigate({ to: "/login" }); return; }
     setMounted(true);
     import("@monaco-editor/react").then((m) => setEditor(() => m.default));
   }, [navigate]);
