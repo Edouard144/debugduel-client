@@ -6,11 +6,19 @@ import { ThemeToggle } from "./ThemeToggle";
 export function TopNav() {
   const router = useRouter();
   const [user, setUser] = useState(auth.user);
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => { const u = auth.subscribe(() => setUser(auth.user)); return () => { u; }; }, []);
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="fixed top-6 left-0 right-0 z-40 w-full px-6 lg:px-12 xl:px-24">
-      <header className="mx-auto flex h-14 w-full items-center justify-between rounded-full bg-white dark:bg-zinc-900 px-6 shadow-xl dark:shadow-md dark:shadow-black/20 ring-1 ring-black/5 dark:ring-white/10 transition-all duration-300 ease-in-out hover:shadow-2xl">
+    <div className={`fixed left-0 right-0 z-40 w-full px-6 transition-all duration-300 lg:px-12 xl:px-24 ${scrolled ? "top-4" : "top-8"}`}>
+      <header className={`mx-auto flex items-center justify-between bg-white dark:bg-zinc-900 px-6 shadow-xl dark:shadow-md dark:shadow-black/20 ring-1 ring-black/5 dark:ring-white/10 transition-all duration-300 ${scrolled ? "h-14 rounded-full" : "h-16 rounded-2xl"}`}>
         {/* Left: Logo */}
         <Link to="/" className="flex items-center gap-2.5">
           <span className="flex h-7 w-7 items-center justify-center text-black dark:text-white">
