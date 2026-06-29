@@ -4,7 +4,7 @@ import { TopNav } from "@/components/TopNav";
 import { api, auth, WS_BASE } from "@/lib/auth";
 
 export const Route = createFileRoute("/duel/$code")({
-  head: () => ({ meta: [{ title: "Duel — DebugDuel" }] }),
+  head: () => ({ meta: [{ title: "Duel — BugCombat" }] }),
   component: DuelPage,
 });
 

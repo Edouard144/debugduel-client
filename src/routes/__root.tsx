@@ -55,10 +55,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DebugDuel — Debug. Duel. Dominate." },
+      { title: "BugCombat — Debug. Duel. Dominate." },
       { name: "description", content: "Real-time competitive coding duels, judged by AI. Two developers, one bug, one winner." },
       { name: "theme-color", content: "#0a0a0f" },
-      { property: "og:title", content: "DebugDuel — Debug. Duel. Dominate." },
+      { property: "og:title", content: "BugCombat — Debug. Duel. Dominate." },
       { property: "og:description", content: "Real-time competitive coding duels, judged by AI." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

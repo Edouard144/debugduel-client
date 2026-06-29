@@ -4,7 +4,7 @@ import { TopNav } from "@/components/TopNav";
 import { api, auth } from "@/lib/auth";
 
 export const Route = createFileRoute("/login")({
-  head: () => ({ meta: [{ title: "Sign in — DebugDuel" }] }),
+  head: () => ({ meta: [{ title: "Sign in — BugCombat" }] }),
   component: LoginPage,
 });
 

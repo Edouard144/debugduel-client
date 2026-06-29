@@ -5,7 +5,7 @@ import { api, auth } from "@/lib/auth";
 import { Field } from "./login";
 
 export const Route = createFileRoute("/register")({
-  head: () => ({ meta: [{ title: "Create account — DebugDuel" }] }),
+  head: () => ({ meta: [{ title: "Create account — BugCombat" }] }),
   component: RegisterPage,
 });
 

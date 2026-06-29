@@ -4,7 +4,7 @@ import { TopNav } from "@/components/TopNav";
 import { api, auth } from "@/lib/auth";
 
 export const Route = createFileRoute("/results/$code")({
-  head: () => ({ meta: [{ title: "Results — DebugDuel" }] }),
+  head: () => ({ meta: [{ title: "Results — BugCombat" }] }),
   component: ResultsPage,
 });
 
@@ -105,7 +105,7 @@ function ResultsPage() {
               <button
                 onClick={() => {
                   const url = typeof window !== "undefined" ? window.location.href : "";
-                  navigator.clipboard?.writeText(`I just dueled on DebugDuel — winner @${winner}. ${url}`);
+                  navigator.clipboard?.writeText(`I just dueled on BugCombat — winner @${winner}. ${url}`);
                 }}
                 className="rounded-md border border-border bg-surface px-5 py-2.5 text-sm font-medium hover:border-primary/50"
               >

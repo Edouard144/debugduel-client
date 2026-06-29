@@ -1,4 +1,4 @@
-# DuelApp
+# BugCombat
 
 A real-time coding duel platform where users can challenge each other to solve coding problems head-to-head.
 

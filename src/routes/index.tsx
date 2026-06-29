@@ -4,7 +4,7 @@ import { TopNav } from "@/components/TopNav";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DebugDuel" },
+      { title: "BugCombat" },
       { name: "description", content: "Real-time competitive coding duels, judged by AI." },
     ],
   }),
@@ -28,7 +28,7 @@ function Landing() {
           }}
         />
 
-        <div className="relative mx-auto grid max-w-7xl gap-8 px-6 pt-20 pb-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16 lg:px-12 xl:px-24">
+        <div className="relative mx-auto grid max-w-7xl gap-8 px-6 pt-24 pb-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16 lg:px-12 xl:px-24">
           {/* Left */}
           <div className="fade-up">
 
@@ -38,7 +38,7 @@ function Landing() {
             </h1>
 
             <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-              DebugDuel pits two developers against the same broken function. Fix the bug faster and cleaner than your opponent. The AI judges your speed and code in seconds.
+              BugCombat pits two developers against the same broken function. Fix the bug faster and cleaner than your opponent. The AI judges your speed and code in seconds.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -79,8 +79,8 @@ function Landing() {
 
       {/* SECTION — features */}
       <section id="features" className="bg-surface text-foreground">
-        <div className="px-6 py-24 lg:px-12 xl:px-24">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Why DebugDuel</p>
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-12 xl:px-24">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Why BugCombat</p>
           <h2 className="mt-3 max-w-2xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
             Skill, judged by code — not by opinion.
           </h2>
@@ -167,40 +167,11 @@ function Landing() {
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="text-xs font-bold uppercase tracking-wider">DebugDuel</span>
+            <span className="text-xs font-bold uppercase tracking-wider">BugCombat</span>
           </div>
-          <span>© {new Date().getFullYear()} DebugDuel. Built for developers who like to win.</span>
+          <span>© {new Date().getFullYear()} BugCombat. Built for developers who like to win.</span>
         </div>
       </footer>
-    </div>
-  );
-}
-
-function PlayerPane({
-  name, status, lang, code, winning,
-}: { name: string; status: string; lang: string; code: string; winning?: boolean }) {
-  return (
-    <div className={`bg-surface p-4 ${winning ? "relative" : ""}`}>
-      <div className="mb-2 flex items-center justify-between">
-        <div className="font-mono text-xs font-semibold">{name}</div>
-        <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-          {status === "submitted" ? (
-            <span className="rounded-full bg-primary/15 px-1.5 py-0.5 text-primary">submitted</span>
-          ) : (
-            <>
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary pulse-dot" />
-              {status}
-            </>
-          )}
-        </div>
-      </div>
-      <div className="mb-2 text-[10px] uppercase tracking-widest text-muted-foreground">{lang}</div>
-      <pre className="overflow-hidden whitespace-pre rounded-md border border-border bg-background p-3 font-mono text-[11px] leading-5 text-foreground/90">{code}</pre>
-      {winning && (
-        <div className="absolute right-3 top-3 rounded-full bg-primary px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
-          winner
-        </div>
-      )}
     </div>
   );
 }

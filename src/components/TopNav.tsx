@@ -26,7 +26,7 @@ export function TopNav() {
               <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </span>
-          <span className="text-[15px] font-bold uppercase tracking-wider text-black dark:text-white">DebugDuel</span>
+          <span className="text-[15px] font-bold uppercase tracking-wider text-black dark:text-white">BugCombat</span>
         </Link>
 
         {/* Center: Nav links */}
