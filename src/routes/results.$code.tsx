@@ -54,7 +54,7 @@ function ResultsPage() {
   return (
     <div className="min-h-screen bg-background">
       <TopNav />
-      <main className="mx-auto max-w-5xl px-6 py-12 lg:px-12 xl:px-24">
+      <main className="mx-auto max-w-5xl px-6 py-12 pt-28 lg:px-12 xl:px-24">
         {loading ? (
           <div className="py-32 text-center text-sm text-muted-foreground">Computing AI verdict…</div>
         ) : err ? (
