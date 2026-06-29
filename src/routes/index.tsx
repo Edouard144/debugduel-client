@@ -47,7 +47,7 @@ function Landing() {
                 to="/register"
                 className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
               >
-                Start a duel <span aria-hidden>→</span>
+                Start free <span aria-hidden>→</span>
               </Link>
               <Link
                 to="/login"
