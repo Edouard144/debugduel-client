@@ -4,7 +4,7 @@ import { TopNav } from "@/components/TopNav";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DebugDuel — Debug. Duel. Dominate." },
+      { title: "DebugDuel" },
       { name: "description", content: "Real-time competitive coding duels, judged by AI." },
     ],
   }),
@@ -38,8 +38,7 @@ function Landing() {
             </h1>
 
             <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-              DebugDuel pits two developers against the same broken function. Fix the bug
-              faster and cleaner — than your opponent. Judged in seconds by AI, not by opinion.
+              DebugDuel pits two developers against the same broken function. Fix the bug faster and cleaner than your opponent. The AI judges your speed and code in seconds.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -164,9 +163,11 @@ function Landing() {
 
       <footer className="border-t border-border">
         <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-8 text-xs text-muted-foreground lg:px-12 xl:px-24">
-          <div className="flex items-center gap-2">
-            <span className="h-5 w-5 rounded-md bg-primary" />
-            <span>DebugDuel</span>
+          <div className="flex items-center gap-2.5">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className="text-xs font-bold uppercase tracking-wider">DebugDuel</span>
           </div>
           <span>© {new Date().getFullYear()} DebugDuel. Built for developers who like to win.</span>
         </div>
