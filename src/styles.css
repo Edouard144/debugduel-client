@@ -42,6 +42,38 @@
 :root {
   --radius: 0.875rem;
 
+  /* Light forest green / crisp white stage */
+  --background: oklch(0.99 0.01 145);
+  --foreground: oklch(0.15 0.03 145);
+  --surface: oklch(1 0 0);
+  --surface-elevated: oklch(0.97 0.02 145);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.03 145);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.03 145);
+
+  /* Warm gold accent */
+  --primary: oklch(0.82 0.13 85);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.95 0.02 145);
+  --secondary-foreground: oklch(0.15 0.03 145);
+  --muted: oklch(0.95 0.02 145);
+  --muted-foreground: oklch(0.45 0.03 145);
+  --accent: oklch(0.82 0.13 85);
+  --accent-foreground: oklch(0.99 0 0);
+
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.90 0.02 145);
+  --input: oklch(0.90 0.02 145);
+  --ring: oklch(0.82 0.13 85);
+
+  --ink: oklch(1 0 0);
+}
+
+.dark {
   /* Deep forest green stage */
   --background: oklch(0.12 0.03 145);
   --foreground: oklch(0.97 0.01 145);
@@ -86,11 +118,9 @@
   ::selection { background: color-mix(in oklab, var(--primary) 45%, transparent); color: var(--ink); }
 }
 
-@utility grid-bg {
-  background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
-  background-size: 56px 56px;
+@utility dot-bg {
+  background-image: radial-gradient(color-mix(in oklab, var(--foreground) 15%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
   background-position: center top;
 }
 

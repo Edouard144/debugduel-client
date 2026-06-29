@@ -75,11 +75,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const themeScript = `
+  (function() {
+    try {
+      var stored = localStorage.getItem('theme');
+      var dark = stored === 'dark' || (!stored && true); // default dark
+      if (dark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (e) {}
+  })();
+`;
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <head><HeadContent /></head>
-      <body className="dark">{children}<Scripts /></body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>{children}<Scripts /></body>
     </html>
   );
 }

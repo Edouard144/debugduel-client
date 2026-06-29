@@ -18,7 +18,7 @@ function Landing() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div aria-hidden className="absolute inset-0 grid-bg opacity-60" />
+        <div aria-hidden className="absolute inset-0 dot-bg opacity-30" />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
@@ -121,14 +121,14 @@ function Landing() {
         </div>
       </section>
 
-      {/* LIGHT SECTION — features */}
-      <section id="features" className="bg-foreground text-[color:var(--ink)]">
+      {/* SECTION — features */}
+      <section id="features" className="bg-surface text-foreground">
         <div className="px-6 py-24 lg:px-12 xl:px-24">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Why DebugDuel</p>
           <h2 className="mt-3 max-w-2xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
             Skill, judged by code — not by opinion.
           </h2>
-          <p className="mt-4 max-w-2xl text-base text-[color:var(--ink)]/70">
+          <p className="mt-4 max-w-2xl text-base text-muted-foreground">
             Every duel is scored on four objective dimensions by an AI judge that reviews
             both submissions side-by-side. No favoritism, no rubric arguments.
           </p>
@@ -164,7 +164,7 @@ function Landing() {
 
       {/* HOW IT WORKS — back on dark */}
       <section id="how" className="relative">
-        <div aria-hidden className="absolute inset-0 grid-bg opacity-40" />
+        <div aria-hidden className="absolute inset-0 dot-bg opacity-20" />
         <div className="relative px-6 py-24 lg:px-12 xl:px-24">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">The process</p>
           <h2 className="mt-3 max-w-2xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
@@ -249,7 +249,7 @@ function PlayerPane({
 
 function FeatureCard({ tag, title, body, icon }: { tag: string; title: string; body: string; icon: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-[color:var(--ink)]/10 bg-white/60 p-6">
+    <div className="rounded-2xl border border-border bg-background p-6 shadow-sm">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{tag}</p>
       <div className="mt-4 flex items-start gap-4">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
@@ -259,7 +259,7 @@ function FeatureCard({ tag, title, body, icon }: { tag: string; title: string; b
         </span>
         <div>
           <h3 className="text-lg font-bold tracking-tight">{title}</h3>
-          <p className="mt-1.5 text-sm text-[color:var(--ink)]/70">{body}</p>
+          <p className="mt-1.5 text-sm text-muted-foreground">{body}</p>
         </div>
       </div>
     </div>
