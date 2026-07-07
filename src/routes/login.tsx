@@ -25,7 +25,7 @@ function LoginPage() {
   useEffect(() => {
     if (window.google?.accounts?.id) {
       window.google.accounts.id.initialize({
-        client_id: "YOUR_GOOGLE_CLIENT_ID",
+        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || "",
         callback: handleGoogleLogin,
       });
       window.google.accounts.id.renderButton(googleBtnRef.current, {
