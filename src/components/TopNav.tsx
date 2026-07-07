@@ -41,7 +41,11 @@ export function TopNav() {
           <ThemeToggle />
           {auth.token ? (
             <>
-              {user?.username && <span className="hidden text-xs font-medium text-zinc-400 dark:text-zinc-500 md:inline">@{user.username}</span>}
+              {user?.username && (
+                <Link to="/profile" className="hidden text-xs font-medium text-muted-foreground transition-colors hover:text-foreground md:inline">
+                  @{user.username}
+                </Link>
+              )}
               <button
                 onClick={() => { auth.clear(); router.navigate({ to: "/" }); }}
                 className="text-[13px] font-semibold text-zinc-600 dark:text-zinc-400 transition-all duration-300 ease-in-out hover:text-black dark:hover:text-white"
