@@ -8,7 +8,16 @@ export const Route = createFileRoute("/dashboard")({
   component: Dashboard,
 });
 
-type LeaderRow = { username: string; wins?: number; losses?: number; rating?: number; score?: number };
+type LeaderRow = {
+  id: number;
+  username: string;
+  email?: string;
+  bio?: string;
+  total_duels?: number;
+  wins?: number;
+  losses?: number;
+  created_at?: string;
+};
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -22,13 +31,12 @@ function Dashboard() {
   const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
-    // auth guard removed by request
-    // if (!auth.token) { navigate({ to: "/login" }); return; }
+    if (!auth.token) { navigate({ to: "/login" }); return; }
     (async () => {
       try {
-        if (!auth.user && auth.token) { const me = await api<any>("/api/auth/me/"); auth.setUser(me); setUser(me); }
-        const lb = await api<any>("/api/auth/leaderboard/");
-        const rows: LeaderRow[] = Array.isArray(lb) ? lb : (lb?.results ?? lb?.leaderboard ?? []);
+        if (!auth.user) { const me = await api<any>("/api/auth/me/"); auth.setUser(me); setUser(me); }
+        const lb = await api<LeaderRow[]>("/api/auth/leaderboard/");
+        const rows: LeaderRow[] = Array.isArray(lb) ? lb : [];
         setLeaders(rows);
       } catch (e: any) { setErr(e.message); }
     })();
@@ -70,8 +78,8 @@ function Dashboard() {
           <section className="surface p-6 fade-up">
             <h2 className="font-mono text-sm uppercase tracking-wider text-muted-foreground">Create a duel</h2>
             <div className="mt-5 grid grid-cols-2 gap-3">
-              <Select label="Language" value={language} onChange={setLanguage} options={["python","javascript","typescript","go","rust","java","cpp"]} />
-              <Select label="Difficulty" value={difficulty} onChange={setDifficulty} options={["easy","medium","hard","expert"]} />
+              <Select label="Language" value={language} onChange={setLanguage} options={["python","javascript","java"]} />
+              <Select label="Difficulty" value={difficulty} onChange={setDifficulty} options={["easy","medium","hard"]} />
             </div>
             <button onClick={createDuel} disabled={creating} className="mt-6 w-full rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground disabled:opacity-50 glow">
               {creating ? "Spinning up arena…" : "Create duel"}
@@ -109,9 +117,9 @@ function Dashboard() {
               <tr>
                 <th className="px-6 py-3 w-12">#</th>
                 <th className="px-6 py-3">Player</th>
+                <th className="px-6 py-3 text-right">Duels</th>
                 <th className="px-6 py-3 text-right">Wins</th>
                 <th className="px-6 py-3 text-right">Losses</th>
-                <th className="px-6 py-3 text-right">Rating</th>
               </tr>
             </thead>
             <tbody>
@@ -122,9 +130,9 @@ function Dashboard() {
                 <tr key={(row.username ?? "") + i} className="border-t border-border/60 hover:bg-surface-elevated/40">
                   <td className="px-6 py-3 font-mono text-muted-foreground">{i + 1}</td>
                   <td className="px-6 py-3 font-medium">@{row.username}</td>
-                  <td className="px-6 py-3 text-right font-mono">{row.wins ?? 0}</td>
+                  <td className="px-6 py-3 text-right font-mono">{row.total_duels ?? 0}</td>
+                  <td className="px-6 py-3 text-right font-mono text-primary">{row.wins ?? 0}</td>
                   <td className="px-6 py-3 text-right font-mono text-muted-foreground">{row.losses ?? 0}</td>
-                  <td className="px-6 py-3 text-right font-mono text-primary">{row.rating ?? row.score ?? "—"}</td>
                 </tr>
               ))}
             </tbody>
