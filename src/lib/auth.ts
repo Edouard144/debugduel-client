@@ -3,7 +3,16 @@ type AuthListener = (token: string | null) => void;
 
 let accessToken: string | null = null;
 let refreshToken: string | null = null;
-let currentUser: { id?: number; username?: string; email?: string } | null = null;
+let currentUser: {
+  id?: number;
+  username?: string;
+  email?: string;
+  bio?: string;
+  total_duels?: number;
+  wins?: number;
+  losses?: number;
+  created_at?: string;
+} | null = null;
 const listeners = new Set<AuthListener>();
 
 export const auth = {
@@ -28,8 +37,8 @@ export const auth = {
   },
 };
 
-export const API_BASE = "http://127.0.0.1:8000";
-export const WS_BASE = "ws://127.0.0.1:8000";
+export const API_BASE = "https://debugduel-backend.onrender.com";
+export const WS_BASE = "wss://debugduel-backend.onrender.com";
 
 export async function api<T = any>(
   path: string,
