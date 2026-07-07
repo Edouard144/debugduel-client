@@ -9,7 +9,13 @@ export const Route = createFileRoute("/results/$code")({
 });
 
 type Scores = { correctness: number; cleanliness: number; efficiency: number; security: number };
-type PlayerResult = { username: string; scores: Scores; total: number; feedback?: string };
+type PlayerResult = {
+  username: string;
+  scores: Scores;
+  total: number;
+  feedback?: string;
+  is_winner?: boolean;
+};
 
 function ResultsPage() {
   const { code } = Route.useParams();
@@ -25,27 +31,28 @@ function ResultsPage() {
     (async () => {
       try {
         const data = await api<any>(`/api/duels/${code}/submissions/`);
-        const subs: any[] = data.submissions ?? data.results ?? data ?? [];
+        const subs: any[] = Array.isArray(data) ? data : (data.submissions ?? data.results ?? []);
         const parsed: PlayerResult[] = subs.map((s) => {
-          const sc = s.scores ?? s.score ?? {};
           const scores: Scores = {
-            correctness: num(sc.correctness),
-            cleanliness: num(sc.cleanliness),
-            efficiency: num(sc.efficiency),
-            security: num(sc.security),
+            correctness: num(s.correctness),
+            cleanliness: num(s.cleanliness),
+            efficiency: num(s.efficiency),
+            security: num(s.security),
           };
           const total = Math.round((scores.correctness + scores.cleanliness + scores.efficiency + scores.security) / 4);
           return {
-            username: s.username ?? s.user?.username ?? s.player ?? "player",
+            username: s.player?.username ?? s.username ?? "player",
             scores,
             total,
-            feedback: s.feedback ?? s.ai_feedback,
+            feedback: s.ai_feedback ?? s.feedback,
+            is_winner: s.is_winner,
           };
         });
         parsed.sort((a, b) => b.total - a.total);
         setPlayers(parsed);
-        setWinner(data.winner ?? parsed[0]?.username ?? null);
-        setFeedback(data.feedback ?? data.ai_feedback ?? parsed[0]?.feedback ?? "");
+        const winnerResult = parsed.find((p) => p.is_winner);
+        setWinner(winnerResult?.username ?? parsed[0]?.username ?? null);
+        setFeedback(winnerResult?.feedback ?? parsed[0]?.feedback ?? "");
       } catch (e: any) { setErr(e.message); }
       finally { setLoading(false); }
     })();
