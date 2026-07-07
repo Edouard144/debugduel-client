@@ -32,6 +32,13 @@ function DuelPage() {
   const [codeText, setCodeText] = useState("");
   const wsRef = useRef<WebSocket | null>(null);
 
+  async function fetchOpponent() {
+    try {
+      const d = await api<any>(`/api/duels/${code}/`);
+      if (d.opponent) setOpponent({ username: d.opponent.username, submitted: false });
+    } catch {}
+  }
+
   // gate auth + load editor client-side
   useEffect(() => {
     // auth guard removed by request
@@ -40,13 +47,15 @@ function DuelPage() {
     import("@monaco-editor/react").then((m) => setEditor(() => m.default));
   }, [navigate]);
 
-  // fetch duel info (best-effort)
+  // fetch duel info
   useEffect(() => {
     if (!mounted) return;
     (async () => {
       try {
-        const subs = await api<any>(`/api/duels/${code}/submissions/`).catch(() => null);
-        if (subs?.duel) setDuel(subs.duel);
+        const d = await api<any>(`/api/duels/${code}/`);
+        setDuel(d);
+        if (d.opponent) setOpponent({ username: d.opponent.username, submitted: false });
+        if (d.status === "active") setStarted(true);
       } catch {}
     })();
   }, [mounted, code]);
@@ -63,25 +72,19 @@ function DuelPage() {
     const ws = new WebSocket(`${WS_BASE}/ws/duels/${code}/`);
     wsRef.current = ws;
     ws.onopen = () => {
-      try { ws.send(JSON.stringify({ type: "hello", token: auth.token })); } catch {}
+      try { ws.send(JSON.stringify({ type: "room_status" })); } catch {}
     };
     ws.onmessage = (ev) => {
       try {
         const msg = JSON.parse(ev.data);
-        const t = msg.type ?? msg.event;
-        if (t === "duel_state" || t === "duel" || t === "state") {
-          if (msg.duel) setDuel(msg.duel);
-          if (msg.opponent) setOpponent(msg.opponent);
+        const t = msg.type;
+        if (t === "room_update") {
+          if (msg.status === "active") {
+            setStarted(true);
+            fetchOpponent();
+          }
         }
-        if (t === "opponent_joined" || t === "player_joined") {
-          setOpponent({ username: msg.username ?? msg.user?.username });
-        }
-        if (t === "start" || t === "duel_started") {
-          setStarted(true);
-          if (msg.duration) setTimeLeft(msg.duration);
-        }
-        if (t === "opponent_submitted") setOpponent((p) => ({ ...(p ?? {}), submitted: true }));
-        if (t === "duel_complete" || t === "results" || t === "duel_finished") {
+        if (t === "duel_judged") {
           navigate({ to: "/results/$code", params: { code } });
         }
       } catch {}
@@ -134,7 +137,7 @@ function DuelPage() {
 
           <div className="mt-16 flex items-center gap-3 text-sm text-muted-foreground">
             <span className="relative inline-flex h-2 w-2 rounded-full bg-primary pulse-dot" />
-            {opponent ? `Opponent @${opponent.username} ready — starting…` : "Waiting for opponent…"}
+            {opponent ? `Opponent @${opponent.username} joined — starting…` : "Waiting for opponent…"}
           </div>
 
           <button
