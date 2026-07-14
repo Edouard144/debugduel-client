@@ -35,14 +35,22 @@ function DuelPage() {
   async function fetchOpponent() {
     try {
       const d = await api<any>(`/api/duels/${code}/`);
-      if (d.opponent) setOpponent({ username: d.opponent.username, submitted: false });
+      resolveOpponent(d);
     } catch {}
   }
 
-  // gate auth + load editor client-side
+  function resolveOpponent(d: any) {
+    if (!d) return;
+    const isOpponent = auth.user?.username && auth.user.username === d.opponent?.username;
+    const opp = isOpponent ? d.creator : d.opponent;
+    if (opp) setOpponent({ username: opp.username, submitted: false });
+  }
+
+  // load user & editor client-side
   useEffect(() => {
-    // auth guard removed by request
-    // if (!auth.token) { navigate({ to: "/login" }); return; }
+    if (!auth.user && auth.token) {
+      api<any>("/api/auth/me/").then(u => auth.setUser(u)).catch(() => {});
+    }
     setMounted(true);
     import("@monaco-editor/react").then((m) => setEditor(() => m.default));
   }, [navigate]);
@@ -54,17 +62,20 @@ function DuelPage() {
       try {
         const d = await api<any>(`/api/duels/${code}/`);
         setDuel(d);
-        if (d.opponent) setOpponent({ username: d.opponent.username, submitted: false });
+        resolveOpponent(d);
         if (d.status === "active") setStarted(true);
       } catch {}
     })();
   }, [mounted, code]);
 
-  // initialize code starter when language known
+  // Initialize editor with buggy_code from API (or fallback)
   useEffect(() => {
-    const lang = duel?.language ?? "python";
-    if (!codeText) setCodeText(STARTERS[lang] ?? STARTERS.python);
-  }, [duel, codeText]);
+    if (!duel) return;
+    if (!codeText) {
+      const starter = duel.buggy_code || STARTERS[duel.language] || STARTERS.python;
+      setCodeText(starter);
+    }
+  }, [duel]);
 
   // WebSocket
   useEffect(() => {
