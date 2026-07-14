@@ -27,7 +27,6 @@ function ResultsPage() {
   const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!auth.token) { navigate({ to: "/login" }); return; }
     (async () => {
       try {
         const data = await api<any>(`/api/duels/${code}/submissions/`);
@@ -126,10 +125,11 @@ function ResultsPage() {
   );
 }
 
+// API returns 0.0–1.0; convert to 0–100 for display
 function num(v: any): number {
   const n = typeof v === "number" ? v : parseFloat(v);
   if (!isFinite(n)) return 0;
-  return Math.max(0, Math.min(100, Math.round(n)));
+  return Math.max(0, Math.min(100, Math.round(n * 100)));
 }
 
 function Bar({ label, value }: { label: string; value: number }) {
