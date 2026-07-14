@@ -55,11 +55,10 @@ function RegisterPage() {
     setLoading(true);
     setErr(null);
     try {
-      const data = await api<{ user: any; tokens: { refresh: string; access: string } }>("/api/auth/register/", {
-        method: "POST",
-        body: { username, email, password },
-        auth: false,
-      });
+      const data = await api<{ user: any; tokens: { access: string; refresh: string } }>(
+        "/api/auth/register/",
+        { method: "POST", body: { username, email, password }, auth: false }
+      );
       auth.setTokens(data.tokens.access, data.tokens.refresh);
       auth.setUser(data.user);
       navigate({ to: "/dashboard" });
