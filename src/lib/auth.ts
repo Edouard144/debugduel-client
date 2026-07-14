@@ -1,8 +1,15 @@
-// In-memory auth store. Token is NOT persisted (per spec).
+// Auth store with localStorage persistence
 type AuthListener = (token: string | null) => void;
 
 let accessToken: string | null = null;
+if (typeof window !== "undefined") {
+  accessToken = localStorage.getItem("bugcombat_access");
+}
 let refreshToken: string | null = null;
+if (typeof window !== "undefined") {
+  refreshToken = localStorage.getItem("bugcombat_refresh");
+}
+
 let currentUser: {
   id?: number;
   username?: string;
@@ -21,7 +28,11 @@ export const auth = {
   get user() { return currentUser; },
   setTokens(access: string, refresh?: string) {
     accessToken = access;
-    if (refresh) refreshToken = refresh;
+    if (typeof window !== "undefined") localStorage.setItem("bugcombat_access", access);
+    if (refresh) {
+      refreshToken = refresh;
+      if (typeof window !== "undefined") localStorage.setItem("bugcombat_refresh", refresh);
+    }
     listeners.forEach((l) => l(accessToken));
   },
   setUser(u: typeof currentUser) { currentUser = u; },
@@ -29,6 +40,10 @@ export const auth = {
     accessToken = null;
     refreshToken = null;
     currentUser = null;
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("bugcombat_access");
+      localStorage.removeItem("bugcombat_refresh");
+    }
     listeners.forEach((l) => l(null));
   },
   subscribe(fn: AuthListener): () => void {
@@ -37,8 +52,8 @@ export const auth = {
   },
 };
 
-export const API_BASE = "https://debugduel-backend.onrender.com";
-export const WS_BASE = "wss://debugduel-backend.onrender.com";
+export const API_BASE = "https://bugcomboo.onrender.com";
+export const WS_BASE = "wss://bugcomboo.onrender.com";
 
 export async function api<T = any>(
   path: string,
